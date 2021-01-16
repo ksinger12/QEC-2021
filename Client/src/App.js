@@ -1,5 +1,6 @@
 import './App.css';
 import React, {Component} from "react";
+import About from "./Components/About";
 
 
 class App extends Component{
@@ -9,25 +10,28 @@ class App extends Component{
     this.data = {};
 
     this.state = {
-      date: "",
-      homeMoney: {
-        value: "",
-        type: ""
-      },
-      loans: {
-        value: "",
-        type: ""
-      },
-      scholarships: {
-        value: "",
-        type: ""
-      },
-      salary: {
-        value: "",
-        type: ""
+      income: {
+        date: "",
+        homeMoney: {
+          value: "",
+          type: ""
+        },
+        loans: {
+          value: "",
+          type: ""
+        },
+        scholarships: {
+          value: "",
+          type: ""
+        },
+        salary: {
+          value: "",
+          type: ""
+        }
       },
     }
   }
+
 
   render() {
     const sendData = event => {
@@ -55,7 +59,13 @@ class App extends Component{
     return (    
     <div className="App">
       <div className="form">
-        <header></header>
+        <div className="topping">
+        <header>
+          <h1>Name of Website</h1>
+          <p>This will be the header</p>
+        </header>
+        </div>
+        <About/>
         <form onSubmit={sendData}>
           <fieldset className="today-info">
             <label>Date:
