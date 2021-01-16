@@ -15,19 +15,19 @@ def create_data():
     Data.insert_one(db_entry)
 
     # Do calcuations
-    income = post_data.income
-    expenses = post_data.expenses
+    income = post_data.get("income")
+    expenses = post_data.get("expenses")
     principleCheq = 0
     principleSav = 0
     monthCount = 24 # this will do predictions for the next 2 years
     checking_balance, savings_balance, gic, gicMature, incomeMonthly, expensesMonthly = simulation(income, expenses, principleCheq, principleSav, monthCount)
 
     data = {
-        checking_balance,
-        savings_balance,
-        gic,
-        incomeMonthly,
-        expensesMonthly,
+        "checking_balance": checking_balance,
+        "savings_balance": savings_balance,
+        "gic": gic,
+        "incomeMonthly": incomeMonthly,
+        "expensesMonthly": expensesMonthly,
     }
     responseObject = {
         'status' : 'Success',
