@@ -1,4 +1,6 @@
-#Data input
+import matplotlib.pyplot as plt
+
+#Test data input
 income = {
     'Money From Home': {'type': 'monthly', 'value': 100},
     'Loans': {'type': 'yearly', 'value': 10000},
@@ -19,7 +21,8 @@ expenses = {
 }
 
 #----------------------------------------------- Constants -----------------------------------------------
-INTEREST = 0.01
+INTEREST = 0.0075
+GIC_INTEREST = 0.015
 
 #----------------------------------------------- Helper functions -----------------------------------------------
 #setup_account: Creates an array with values for the balance each month for a chequing or savings account
@@ -64,6 +67,17 @@ def get_net_bal(income, expenses, monthN):
     
     return net_bal
 
+#get_neg_net_bal: Gets the sum of all net balances that are negative
+#income - the income data gathered from client
+#expenses - the expenses data gathered from client
+def get_neg_net_bal(income, expenses):
+    out = 0
+    for monthN in range(12):
+        net_bal = get_net_bal(income, expenses, monthN)
+        if (net_bal < 0):
+            out -= net_bal
+    return out
+
 #------------------------------------------- Simulation -----------------------------------------------
 #simulate_next_month: Simulation step for generating what the chequing and savings values should be for the next month
 #prevChequing - the previous month's chequing value
@@ -71,7 +85,7 @@ def get_net_bal(income, expenses, monthN):
 #income - the income data gathered from client
 #expenses - the expenses data gathered from client
 #monthN - the current month
-def simulate_next_month(prevChequing, prevSavings, income, expenses, monthN):
+def simulate_next_month(prevChequing, prevSavings, prevGic, gicMature, income, expenses, monthN):
     balance = prevChequing
     
     net_bal = get_net_bal(income, expenses, monthN)
@@ -90,8 +104,21 @@ def simulate_next_month(prevChequing, prevSavings, income, expenses, monthN):
     else:
         newChequing += newSavings
         newSavings -= newSavings
+        
+    if (prevGic == 0 and newSavings - get_neg_net_bal(income, expenses) > 0):
+        newGic = newSavings - get_neg_net_bal(income, expenses)
+        newSavings -= newSavings - get_neg_net_bal(income, expenses)
+        newGicMature = monthN % 12
+    else:
+        if (monthN % 12 == gicMature):
+            newSavings += prevGic*(1+GIC_INTEREST)
+            newGicMature = -1
+            newGic = 0
+        else:
+            newGic = prevGic
+            newGicMature = gicMature
     
-    return newChequing, newSavings
+    return newChequing, newSavings, newGic, newGicMature
 
 #simulation: Sets up and runs the simulation for a given number of months
 #income - the income data gathered from client
@@ -102,14 +129,27 @@ def simulate_next_month(prevChequing, prevSavings, income, expenses, monthN):
 def simulation(income, expenses, principleCheq, principleSav, monthCount):
     chequing = setup_account(monthCount+1)
     savings = setup_account(monthCount+1)
+    gic = setup_account(monthCount+1)
     chequing[0] = principleCheq
     savings[0] = principleSav
+    gic[0] = 0
+    gicMature = -1
     
     for i in range(1, monthCount+1):
-        newCheq, newSav = simulate_next_month(chequing[i-1], savings[i-1], income, expenses, i-1)
+        newCheq, newSav, newGic, newGicMature = simulate_next_month(chequing[i-1], savings[i-1], gic[i-1], gicMature, income, expenses, i-1)
         chequing[i] = newCheq
         savings[i] = newSav
+        gic[i] = newGic
+        gicMature = newGicMature
         
     print(chequing)
     print(savings)
-    return chequing, savings
+    print(gic)
+    return chequing, savings, gic, gicMature
+
+# c, s, g, m = simulation(income, expenses, 2500, 1000, 24)
+
+# plt.plot(c, label='Chequing', color='black')
+# plt.plot(s, label='Savings', color='green')
+# plt.plot(g, label='GIC', color='blue')
+# plt.legend()
