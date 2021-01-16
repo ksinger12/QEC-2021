@@ -196,7 +196,7 @@ class App extends Component{
           <fieldset className="income">
           <div className="input_section">
               <label className="money">Money (from home):
-                <input type="number" placeholder="Example: 420000" onChange={buildHandler(["income", "homeMoney", "value"])}></input>
+                <input type="number" placeholder="" onChange={buildHandler(["income", "homeMoney", "value"])}></input>
               </label>
               <label className="money">Units:
                 <Unit handler={buildHandler(["income", "homeMoney", "type"])} />
@@ -204,7 +204,7 @@ class App extends Component{
           </div>
           <div className="input_section">
             <label className="loan">Loans:
-              <input type="number" placeholder="Example: 420000" onChange={buildHandler(["income", "loans", "value"])}></input>
+              <input type="number" placeholder="" onChange={buildHandler(["income", "loans", "value"])}></input>
             </label>
             <label className="loan">Units:
               <Unit handler={buildHandler(["income", "loans", "type"])} />
@@ -212,7 +212,7 @@ class App extends Component{
           </div>
           <div className="input_section">
             <label className="scholarship">Scholarship Amounts (total):
-              <input type="number" placeholder="Example: 420000" onChange={buildHandler(["income", "scholarships", "value"])}></input>
+              <input type="number" placeholder="" onChange={buildHandler(["income", "scholarships", "value"])}></input>
             </label>
             <label className="scholarship">Units:
               <Unit handler={buildHandler(["income", "scholarships", "type"])} />
@@ -220,7 +220,7 @@ class App extends Component{
           </div>
           <div className="input_section">
             <label className="salary">Job Salary:
-              <input type="number" placeholder="Example: 420000" onChange={buildHandler(["income", "salary", "value"])}></input>
+              <input type="number" placeholder="" onChange={buildHandler(["income", "salary", "value"])}></input>
             </label>
             <label className="salary">Units:
               <Unit handler={buildHandler(["income", "salary", "type"])} />
@@ -230,7 +230,7 @@ class App extends Component{
           <fieldset>
             <div className="input_section">
             <label className="rent">Rent:
-              <input type="number" placeholder="Example: 420000" onChange={buildHandler(["expenses", "rent", "value"])}></input>
+              <input type="number" placeholder="" onChange={buildHandler(["expenses", "rent", "value"])}></input>
             </label>
             <label className="rent">Units:
               <Unit handler={buildHandler(["expenses", "rent", "type"])} />
@@ -238,7 +238,7 @@ class App extends Component{
             </div>
             <div className="input_section">
             <label className="food">Food (average):
-              <input type="number" placeholder="Example: 420000" onChange={buildHandler(["expenses", "food", "value"])}></input>
+              <input type="number" placeholder="" onChange={buildHandler(["expenses", "food", "value"])}></input>
             </label>
             <label className="food">Units:
               <Unit handler={buildHandler(["expenses", "food", "type"])} />
@@ -246,7 +246,7 @@ class App extends Component{
             </div>
             <div className="input_section">
             <label className="tuition">Tutition:
-              <input type="number" placeholder="Example: 420000" onChange={buildHandler(["expenses", "tuition", "value"])}></input>
+              <input type="number" placeholder="" onChange={buildHandler(["expenses", "tuition", "value"])}></input>
             </label>
             <label className="tuition">Units:
               <Unit handler={buildHandler(["expenses", "tuition", "type"])} />
@@ -254,7 +254,7 @@ class App extends Component{
             </div>
             <div className="input_section">
             <label className="savings">Savings:
-              <input type="number" placeholder="Example: 420000" onChange={buildHandler(["expenses", "rent", "value"])}></input>
+              <input type="number" placeholder="" onChange={buildHandler(["expenses", "rent", "value"])}></input>
             </label>
             <label className="savings">Units:
               <Unit handler={buildHandler(["expenses", "rent", "type"])} />
@@ -262,7 +262,7 @@ class App extends Component{
             </div>
             <div className="input_section">
             <label className="car">Car Payments:
-              <input type="number" placeholder="Example: 420000" onChange={buildHandler(["expenses", "carPayments", "value"])}></input>
+              <input type="number" placeholder="" onChange={buildHandler(["expenses", "carPayments", "value"])}></input>
             </label>
             <label className="car">Units:
               <Unit handler={buildHandler(["expenses", "carPayments", "type"])} />
@@ -270,7 +270,7 @@ class App extends Component{
             </div>
             <div className="input_section">
             <label className="insurance-car">Car Insurance:
-              <input type="number" placeholder="Example: 420000" onChange={buildHandler(["expenses", "carInsurance", "value"])}></input>
+              <input type="number" placeholder="" onChange={buildHandler(["expenses", "carInsurance", "value"])}></input>
             </label>
             <label className="insurance-car">Units:
               <Unit handler={buildHandler(["expenses", "carInsurance", "type"])} />
@@ -278,7 +278,7 @@ class App extends Component{
             </div>
             <div className="input_section">
             <label className="utilities">Utilities (average):
-              <input type="number" placeholder="Example: 420000" onChange={buildHandler(["expenses", "utilities", "value"])}></input>
+              <input type="number" placeholder="" onChange={buildHandler(["expenses", "utilities", "value"])}></input>
             </label>
             <label className="utilities">Units:
               <Unit handler={buildHandler(["expenses", "utilities", "type"])} />
@@ -286,7 +286,7 @@ class App extends Component{
             </div>
             <div className="input_section">
             <label className="internet">Internet:
-              <input type="number" placeholder="Example: 420000" onChange={buildHandler(["expenses", "internet", "value"])}></input>
+              <input type="number" placeholder="" onChange={buildHandler(["expenses", "internet", "value"])}></input>
             </label>
             <label className="internet">Units:
               <Unit handler={buildHandler(["expenses", "internet", "type"])} />
@@ -294,7 +294,7 @@ class App extends Component{
             </div>
             <div className="input_section">
             <label className="rent">Entertainment:
-              <input type="entertainment" placeholder="Example: 420000" onChange={buildHandler(["expenses", "entertainment", "value"])}></input>
+              <input type="entertainment" placeholder="" onChange={buildHandler(["expenses", "entertainment", "value"])}></input>
             </label>
             <label className="entertainment">Units:
               <Unit handler={buildHandler(["expenses", "entertainment", "type"])} />
