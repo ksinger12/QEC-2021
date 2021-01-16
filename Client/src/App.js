@@ -1,5 +1,6 @@
 import './App.css';
 import React, {Component} from "react";
+import About from "./Components/About";
 
 
 class App extends Component{
@@ -55,8 +56,14 @@ class App extends Component{
     return (    
     <div className="App">
       <div className="form">
-        <header></header>
-        <form onSubmit={sendData}>
+        <div className="topping">
+        <header>
+          <h1>Name of Website</h1>
+          <p>This will be the header</p>
+        </header>
+        </div>
+        <About/>
+        <form onSubmit={this.sendData}>
           <fieldset className="today-info">
             <label>Date:
               <input type="text" placeholder="Example: 11/01/21" onChange={(e)=>{this.setState({date: e.target.value})}}></input>
