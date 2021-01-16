@@ -5,7 +5,7 @@ import uuid
 from app.modules.database import Data
 from algorithm import simulation
 
-def create_data():
+def data():
     post_data = request.form
     if not post_data:
         post_data = request.get_json()
