@@ -301,7 +301,7 @@ class App extends Component{
             </div>
             <div className="input_section">
             <label className="rent">Entertainment:
-              <input type="entertainment" placeholder="" onChange={buildHandler(["expenses", "entertainment", "value"])}></input>
+              <input type="number" placeholder="" onChange={buildHandler(["expenses", "entertainment", "value"])}></input>
             </label>
             <label className="entertainment">Units:
               <Unit handler={buildHandler(["expenses", "entertainment", "type"])} />
@@ -311,10 +311,10 @@ class App extends Component{
           <fieldset>
             <div className="input_section">
             <label className="chequingPrincipal">Current Chequing Account Value:
-              <input type="chequingPrincipal" placeholder="" onChange={buildHandler(["chequing_principal"], true)}></input>
+              <input type="number" placeholder="" onChange={buildHandler(["chequing_principal"], true)}></input>
             </label>
             <label className="savingsPrincipal">Current Savings Account Value:
-              <input type="savingsPrincipal" placeholder="" onChange={buildHandler(["savings_principal"], true)}></input>
+              <input type="number" placeholder="" onChange={buildHandler(["savings_principal"], true)}></input>
             </label>
             </div>
           </fieldset>
