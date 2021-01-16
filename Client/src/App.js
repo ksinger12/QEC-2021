@@ -86,6 +86,8 @@ class App extends Component{
           type: ""
         }
       },
+      chequing_principal: 0,
+      savings_principal: 0
     }
   }
 
@@ -303,6 +305,16 @@ class App extends Component{
             </label>
             <label className="entertainment">Units:
               <Unit handler={buildHandler(["expenses", "entertainment", "type"])} />
+            </label>
+            </div>
+          </fieldset>
+          <fieldset>
+            <div className="input_section">
+            <label className="chequingPrincipal">Current Chequing Account Value:
+              <input type="chequingPrincipal" placeholder="" onChange={buildHandler(["chequing_principal"])}></input>
+            </label>
+            <label className="savingsPrincipal">Current Savings Account Value:
+              <input type="savingsPrincipal" placeholder="" onChange={buildHandler(["savings_principal"])}></input>
             </label>
             </div>
           </fieldset>
