@@ -103,72 +103,45 @@ class App extends Component{
         body: JSON.stringify(this.state)
       })
       .then(res => res.json())
-      .then(data => {
+      .then(resBody => {
+        const data = resBody.data;
         console.log(data);
         const graph = document.getElementById('tester');
         const graph_lines = document.getElementById('lines');
-
-        let rent = [655, 655, 655, 655, 655, 655, 655, 655, 655, 655, 655, 655];
-        let utils = [100, 100, 100, 65, 65, 65, 65, 65, 65, 65, 100, 100, 100];
-        let groceries = [300, 390, 300, 220, 70, 150, 120, 100, 370, 250, 290, 350];
-        let entertainment = [100, 120, 90, 50, 370, 1000, 300, 100, 200, 90, 50, 500,];
-        let tuition = [6700, 0, 0, 0, 500, 0, 0, 0, 6700, 0, 0, 0];
-
-        let expenses = [rent, utils, groceries, entertainment, tuition];
-        let expenses_tot = expenses.reduce(function (r, a) {
-          a.forEach(function (b, i) {
-              r[i] = (r[i] || 0) + b;
-          });
-          return r;
-        }, []);
-
-        let income = [100, 100, 100, 100, 3000, 3000, 3000, 3000, 130, 130, 130, 75];;
-        let scholarships = [0, 0, 0, 0, 0, 0, 0, 0, 5000, 0, 0, 0];
-        let loans = [6540, 0, 0, 0, 0, 0, 0, 0, 6540, 0, 0, 0];
-
-        let money = [income, scholarships, loans];
-        let money_tot = money.reduce(function (r, a) {
-          a.forEach(function (b, i) {
-              r[i] = (r[i] || 0) + b;
-          });
-          return r;
-        }, []);
 
         let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
 
         var expensesTrace = {
           x: months,
-          y: expenses_tot,
+          y: data.expensesMonthly,
           name: 'Expenses',
           type: 'bar',
         };
 
         var incomeTrace = {
           x: months,
-          y: money_tot,
+          y: data.incomeMonthly,
           name: 'Income',
           type: 'bar'
         };
 
-        var data = [expensesTrace, incomeTrace];
+        var incomeData = [expensesTrace, incomeTrace];
 
         var layout = {barmode: 'group'};
 
         var line1 = {
-          x: [1, 2, 3, 4],
-          y: [10, 15, 13, 17],
+          y: data.checking_balance,
+          name: "Checking Account Balance",
           type: 'scatter'
         };
 
         var line2 = {
-          x: [1, 2, 3, 4],
-          y: [16, 5, 11, 9],
+          y: data.savings_balance,
           type: 'scatter'
         };
 
         var line3 = {
-          x: [1, 2, 3, 4],
-          y: [7, 15, 17, 7],
+          y: data.gic,
           type: 'scatter'
         };
 
@@ -183,7 +156,7 @@ class App extends Component{
           };
 
 
-        window.Plotly.newPlot(graph, data, layout);
+        window.Plotly.newPlot(graph, incomeData, layout);
         window.Plotly.newPlot(graph_lines, lines, line_layout);
 
       });
