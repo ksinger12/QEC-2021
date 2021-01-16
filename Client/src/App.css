@@ -42,6 +42,10 @@
   display: flex;
   margin: auto;
 }
+
+.App label {
+  padding-bottom: 6px;
+}
 /*
 label {
   display: inline-block;
