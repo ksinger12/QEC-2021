@@ -142,10 +142,10 @@ def simulate_next_month(prevChequing, prevSavings, prevGic, gicMature, income, e
     else:
         newChequing += newSavings
         newSavings -= newSavings
-    
-    if (prevGic == 0 and newSavings/2 - get_neg_net_bal(income, expenses) > 0):
-        newGic = get_neg_net_bal(income, expenses)
-        newSavings = get_neg_net_bal(income, expenses)
+        
+    if (prevGic == 0 and newSavings - get_neg_net_bal(income, expenses) > 0):
+        newGic = newSavings - get_neg_net_bal(income, expenses)
+        newSavings -= newSavings - get_neg_net_bal(income, expenses)
         newGicMature = monthN % 12
     else:
         if (monthN % 12 == gicMature):
@@ -185,9 +185,9 @@ def simulation(income, expenses, principleCheq, principleSav, monthCount):
     print(gic)
     return chequing, savings, gic, gicMature
 
-c, s, g, m = simulation(income, expenses, 1000, 1000, 24)
+# c, s, g, m = simulation(income, expenses, 2500, 1000, 24)
 
-plt.plot(c, label='Chequing', color='black')
-plt.plot(s, label='Savings', color='green')
-plt.plot(g, label='GIC', color='blue')
-plt.legend()
+# plt.plot(c, label='Chequing', color='black')
+# plt.plot(s, label='Savings', color='green')
+# plt.plot(g, label='GIC', color='blue')
+# plt.legend()
