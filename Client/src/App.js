@@ -127,7 +127,36 @@ class App extends Component{
 
         var incomeData = [expensesTrace, incomeTrace];
 
-        var layout = {barmode: 'group'};
+        var layout = {barmode: 'group',
+        title: {
+          text:'Income and Expenses',
+          font: {
+            family: 'Courier New, monospace',
+            size: 24
+          },
+          xref: 'paper',
+          x: 0.05,
+        },
+        xaxis: {
+          title: {
+            text: 'Month',
+            font: {
+              family: 'Courier New, monospace',
+              size: 18,
+              color: '#7f7f7f'
+            }
+          },
+        },
+        yaxis: {
+          title: {
+            text: 'Value (CAD)',
+            font: {
+              family: 'Courier New, monospace',
+              size: 18,
+              color: '#7f7f7f'
+            }
+          }
+        }};
 
         var line1 = {
           y: data.checking_balance,
@@ -150,11 +179,16 @@ class App extends Component{
         var lines = [line1, line2, line3];
 
         var line_layout = {
-          grid: {
-              rows: 1,
-              columns: 1,
-              pattern: 'independent',
-              roworder: 'bottom to top'}
+              title: {
+                text:'Accounts Over Time',
+                font: {
+                  family: 'Courier New, monospace',
+                  size: 24
+                },
+                xref: 'paper',
+                x: 0.05,
+              },
+              
           };
 
         window.Plotly.newPlot(graph, incomeData, layout);
