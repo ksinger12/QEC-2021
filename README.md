@@ -18,3 +18,7 @@ Install dependencies:
 `npm i`
 Run development server:
 `npm run start`
+
+## API Tests
+Currently, the project has only one integration test, which is located at
+`/server/test.py` and can be run with `python3 /server/test/py`.
