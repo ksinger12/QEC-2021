@@ -10,27 +10,22 @@ def create_data():
     if not post_data:
         post_data = request.get_json()
 
-    data_id = uuid.uuid1().hex
-
-    db_entry = {
-        **post_data,
-        "id": data_id,
-    }
-
+    # save data to db
+    db_entry = post_data
     Data.insert_one(db_entry)
 
-    ################# map Kyle data to Farley data
-    income = db_entry.income
-    expenses = db_entry.expenses
-    principleCheq = 1000
-    principleSav = 1000
-    monthCount = 24
-    ############################
-    checking_balance, savings_balance = simulation(income, expenses, principleCheq, principleSav, monthCount)
+    # Do calcuations
+    income = post_data.income
+    expenses = post_data.expenses
+    principleCheq = 0
+    principleSav = 0
+    monthCount = 24 # this will do predictions for the next 2 years
+    checking_balance, savings_balance, gic, gicMature = simulation(income, expenses, principleCheq, principleSav, monthCount)
 
     data = {
         checking_balance,
         savings_balance,
+        gic,
     }
     responseObject = {
         'status' : 'Success',

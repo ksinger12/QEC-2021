@@ -7,8 +7,6 @@ class App extends Component{
   constructor(props) {
     super(props);
 
-    this.data = {};
-
     this.state = {
       income: {
         date: "",
@@ -85,9 +83,7 @@ class App extends Component{
       })
       .then(res => res.json())
       .then(data => {
-        this.data = data;
-      })
-      .then(() => {
+        console.log(data);
         const graph = document.getElementById('tester');
         
         let rent = [655, 655, 655, 655, 655, 655, 655, 655, 655, 655, 655, 655];
