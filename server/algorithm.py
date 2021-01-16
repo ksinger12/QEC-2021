@@ -1,4 +1,4 @@
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 
 #Test data input
 income = {
@@ -49,23 +49,31 @@ def is_sem(monthN):
 #monthN - the current month
 def get_net_bal(income, expenses, monthN):
     net_bal = 0
+    incomeVal = 0
+    expensesVal = 0
     for i in income:
         if (income[i]['type'].lower() == 'monthly'):
             net_bal += income[i]['value']
+            incomeVal += income[i]['value']
         if (is_year(monthN) and income[i]['type'].lower() == 'yearly'):
             net_bal += income[i]['value']
+            incomeVal += income[i]['value']
         if (is_sem(monthN) and income[i]['type'].lower() == 'semester'):
             net_bal += income[i]['value']
+            incomeVal += income[i]['value']
     
     for i in expenses:
         if (expenses[i]['type'].lower() == 'monthly'):
             net_bal -= expenses[i]['value']
+            expensesVal += expenses[i]['value']
         if (is_year(monthN) and expenses[i]['type'].lower() == 'yearly'):
             net_bal -= expenses[i]['value']
+            expensesVal += expenses[i]['value']
         if (is_sem(monthN) and expenses[i]['type'].lower() == 'semester'):
             net_bal -= expenses[i]['value']
+            expensesVal += expenses[i]['value']
     
-    return net_bal
+    return net_bal, incomeVal, expensesVal
 
 #get_neg_net_bal: Gets the sum of all net balances that are negative
 #income - the income data gathered from client
@@ -73,7 +81,7 @@ def get_net_bal(income, expenses, monthN):
 def get_neg_net_bal(income, expenses):
     out = 0
     for monthN in range(12):
-        net_bal = get_net_bal(income, expenses, monthN)
+        net_bal, _, _ = get_net_bal(income, expenses, monthN)
         if (net_bal < 0):
             out -= net_bal
     return out
@@ -88,8 +96,8 @@ def get_neg_net_bal(income, expenses):
 def simulate_next_month(prevChequing, prevSavings, prevGic, gicMature, income, expenses, monthN):
     balance = prevChequing
     
-    net_bal = get_net_bal(income, expenses, monthN)
-    next_net_bal = get_net_bal(income, expenses, monthN+1)
+    net_bal, incomeVal, expensesVal = get_net_bal(income, expenses, monthN)
+    next_net_bal, _, _ = get_net_bal(income, expenses, monthN+1)
     
     newSavings = round(100*(prevSavings * (1 + INTEREST)))/100
     newChequing = balance + net_bal
@@ -118,7 +126,7 @@ def simulate_next_month(prevChequing, prevSavings, prevGic, gicMature, income, e
             newGic = prevGic
             newGicMature = gicMature
     
-    return newChequing, newSavings, newGic, newGicMature
+    return newChequing, newSavings, newGic, newGicMature, incomeVal, expensesVal
 
 #simulation: Sets up and runs the simulation for a given number of months
 #income - the income data gathered from client
@@ -130,26 +138,36 @@ def simulation(income, expenses, principleCheq, principleSav, monthCount):
     chequing = setup_account(monthCount+1)
     savings = setup_account(monthCount+1)
     gic = setup_account(monthCount+1)
+    incomeMonthly = setup_account(monthCount)
+    expensesMonthly = setup_account(monthCount)
     chequing[0] = principleCheq
     savings[0] = principleSav
     gic[0] = 0
     gicMature = -1
     
     for i in range(1, monthCount+1):
-        newCheq, newSav, newGic, newGicMature = simulate_next_month(chequing[i-1], savings[i-1], gic[i-1], gicMature, income, expenses, i-1)
+        newCheq, newSav, newGic, newGicMature, newIncome, newExpenses = simulate_next_month(chequing[i-1], savings[i-1], gic[i-1], gicMature, income, expenses, i-1)
         chequing[i] = newCheq
         savings[i] = newSav
         gic[i] = newGic
         gicMature = newGicMature
+        incomeMonthly[i-1] = newIncome
+        expensesMonthly[i-1] = newExpenses
         
     print(chequing)
     print(savings)
     print(gic)
-    return chequing, savings, gic, gicMature
+    return chequing, savings, gic, gicMature, incomeMonthly, expensesMonthly
 
-# c, s, g, m = simulation(income, expenses, 2500, 1000, 24)
+# c, s, g, m, i, e = simulation(income, expenses, 2500, 1000, 24)
 
 # plt.plot(c, label='Chequing', color='black')
 # plt.plot(s, label='Savings', color='green')
 # plt.plot(g, label='GIC', color='blue')
 # plt.legend()
+# plt.show()
+
+# plt.plot(i, label='Income', color='green')
+# plt.plot(e, label='Expenses', color='blue')
+# plt.legend()
+# plt.show()
