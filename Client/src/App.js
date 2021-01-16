@@ -92,15 +92,20 @@ class App extends Component{
   render() {
     console.log(this.state)
 
-    const sendData = event => {
+    const sendData = (event, isDemo) => {
       event.preventDefault();
+
+      const reqBody = {
+        ...this.state,
+        isDemo,
+      }
 
       fetch('http://kingston.andrewfryer.ca:3000/data', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(this.state)
+        body: JSON.stringify(reqBody)
       })
       .then(res => res.json())
       .then(resBody => {
@@ -163,6 +168,8 @@ class App extends Component{
 
       });
     }
+
+    const doDemo = event => sendData(event, true);
 
     const dispatch = (props, value) => {
       this.setState(prevState => {
@@ -300,6 +307,9 @@ class App extends Component{
             </div>
           </fieldset>
           <input type="submit" value="Submit"/>
+        </form>
+        <form onSubmit={doDemo}>
+          <input type="submit" value="Run Demo"/>
         </form>
       </div>
     </div>
