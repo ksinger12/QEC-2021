@@ -173,13 +173,13 @@ class App extends Component{
 
     const doDemo = event => sendData(event, true);
 
-    const dispatch = (props, value) => {
+    const dispatch = (props, value, isNum) => {
       this.setState(prevState => {
         let obj = prevState;
         while(props.length > 1) {
           obj = obj[props.shift()];
         }
-        if(props[0] === "value") {
+        if(props[0] === "value" || isNum === true) {
           value = parseFloat(value)
         }
         obj[props.pop()] = value;
@@ -187,7 +187,7 @@ class App extends Component{
       });
     }
 
-    const buildHandler = props => (e => dispatch(props, e.target.value));
+    const buildHandler = (props, isNum=false) => (e => dispatch(props, e.target.value, isNum));
 
     return (
       <div className="App">
@@ -311,10 +311,10 @@ class App extends Component{
           <fieldset>
             <div className="input_section">
             <label className="chequingPrincipal">Current Chequing Account Value:
-              <input type="chequingPrincipal" placeholder="" onChange={buildHandler(["chequing_principal"])}></input>
+              <input type="chequingPrincipal" placeholder="" onChange={buildHandler(["chequing_principal"], true)}></input>
             </label>
             <label className="savingsPrincipal">Current Savings Account Value:
-              <input type="savingsPrincipal" placeholder="" onChange={buildHandler(["savings_principal"])}></input>
+              <input type="savingsPrincipal" placeholder="" onChange={buildHandler(["savings_principal"], true)}></input>
             </label>
             </div>
           </fieldset>

@@ -17,8 +17,8 @@ def create_data():
     # Do calcuations
     income = post_data.get("income")
     expenses = post_data.get("expenses")
-    principleCheq = 0
-    principleSav = 0
+    principleCheq = post_data.get("chequing_principal")
+    principleSav = post_data.get("savings_principal")
     monthCount = 24 # this will do predictions for the next 2 years
 
     if(post_data.get("isDemo") is not None):
@@ -39,6 +39,8 @@ def create_data():
             'Internet': {'type': 'monthly', 'value': 10},
             'Entertainment': {'type': 'monthly', 'value': 20}
         }
+        principleSav = 5000
+        principleCheq = 75
 
     checking_balance, savings_balance, gic, gicMature, incomeMonthly, expensesMonthly = simulation(income, expenses, principleCheq, principleSav, monthCount)
 
