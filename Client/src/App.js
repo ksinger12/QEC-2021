@@ -52,7 +52,8 @@ class App extends Component{
       })
       .then(() => {
         const graph = document.getElementById('tester');
-        
+        const graph_lines = document.getElementById('lines');
+
         let rent = [655, 655, 655, 655, 655, 655, 655, 655, 655, 655, 655, 655];
         let utils = [100, 100, 100, 65, 65, 65, 65, 65, 65, 65, 100, 100, 100];
         let groceries = [300, 390, 300, 220, 70, 150, 120, 100, 370, 250, 290, 350];
@@ -85,7 +86,7 @@ class App extends Component{
           x: months,
           y: expenses_tot,
           name: 'Expenses',
-          type: 'bar'
+          type: 'bar',
         };
         
         var incomeTrace = {
@@ -98,8 +99,39 @@ class App extends Component{
         var data = [expensesTrace, incomeTrace];
         
         var layout = {barmode: 'group'};
+
+        var line1 = {
+          x: [1, 2, 3, 4],
+          y: [10, 15, 13, 17],
+          type: 'scatter'
+        };
         
+        var line2 = {
+          x: [1, 2, 3, 4],
+          y: [16, 5, 11, 9],
+          type: 'scatter'
+        };
+
+        var line3 = {
+          x: [1, 2, 3, 4],
+          y: [7, 15, 17, 7],
+          type: 'scatter'
+        };
+        
+        var lines = [line1, line2, line3];
+        
+        var line_layout = {
+          grid: {
+              rows: 1,
+              columns: 1,
+              pattern: 'independent',
+              roworder: 'bottom to top'}
+          };
+      
+
         window.Plotly.newPlot(graph, data, layout);
+        window.Plotly.newPlot(graph_lines, lines, line_layout);
+
       });
     }
 
