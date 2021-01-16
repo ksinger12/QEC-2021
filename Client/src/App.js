@@ -63,7 +63,7 @@ class App extends Component{
         </header>
         </div>
         <About/>
-        <form onSubmit={this.sendData}>
+        <form onSubmit={sendData}>
           <fieldset className="today-info">
             <label>Date:
               <input type="text" placeholder="Example: 11/01/21" onChange={(e)=>{this.setState({date: e.target.value})}}></input>
