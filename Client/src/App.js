@@ -88,7 +88,7 @@ class App extends Component{
       .then(data => {
         console.log(data);
         const graph = document.getElementById('tester');
-        
+
         let rent = [655, 655, 655, 655, 655, 655, 655, 655, 655, 655, 655, 655];
         let utils = [100, 100, 100, 65, 65, 65, 65, 65, 65, 65, 100, 100, 100];
         let groceries = [300, 390, 300, 220, 70, 150, 120, 100, 370, 250, 290, 350];
@@ -123,18 +123,18 @@ class App extends Component{
           name: 'Expenses',
           type: 'bar'
         };
-        
+
         var incomeTrace = {
           x: months,
           y: money_tot,
           name: 'Income',
           type: 'bar'
         };
-        
+
         var data = [expensesTrace, incomeTrace];
-        
+
         var layout = {barmode: 'group'};
-        
+
         window.Plotly.newPlot(graph, data, layout);
       });
     }
@@ -152,16 +152,15 @@ class App extends Component{
 
     const buildHandler = props => (e => dispatch(props, e.target.value));
 
-    return (    
+    return (
       <div className="App">
       <div className="form">
         <div className="topping">
         <header>
-          <h1>Name of Website</h1>
-          <p>This will be the header</p>
+          <h1>Welcome to QBudge</h1>
+          <p>Helping students make the most of their budget</p>
         </header>
         </div>
-        <About/>
         <form onSubmit={sendData}>
           <fieldset className="today-info">
             <label className="chequing">Chequing Account Balance:
@@ -176,7 +175,7 @@ class App extends Component{
             <label className="money">Money (from home):
               <input type="number" placeholder="Example: 420000" onChange={buildHandler(["income", "homeMoney", "value"])}></input>
             </label>
-            <label className="money">Units: 
+            <label className="money">Units:
               <input type="text" placeholder="Example: Yearly, Semester, Monthly" onChange={buildHandler(["income", "homeMoney", "type"])}></input>
             </label>
           </div>
@@ -184,7 +183,7 @@ class App extends Component{
             <label className="loan">Loans:
               <input type="number" placeholder="Example: 420000" onChange={buildHandler(["income", "loans", "value"])}></input>
             </label>
-            <label className="loan">Units: 
+            <label className="loan">Units:
               <input type="text" placeholder="Example: Yearly, Semester, Monthly" onChange={buildHandler(["income", "loans", "type"])}></input>
             </label>
           </div>
@@ -192,7 +191,7 @@ class App extends Component{
             <label className="scholarship">Scholarship Amounts (total):
               <input type="number" placeholder="Example: 420000" onChange={buildHandler(["income", "scholarships", "value"])}></input>
             </label>
-            <label className="scholarship">Units: 
+            <label className="scholarship">Units:
               <input type="text" placeholder="Example: Yearly, Semester, Monthly" onChange={buildHandler(["income", "scholarships", "type"])}></input>
             </label>
           </div>
@@ -200,7 +199,7 @@ class App extends Component{
             <label className="salary">Job Salary:
               <input type="number" placeholder="Example: 420000" onChange={buildHandler(["income", "salary", "value"])}></input>
             </label>
-            <label className="salary">Units: 
+            <label className="salary">Units:
               <input type="text" placeholder="Example: Yearly, Semester, Monthly" onChange={buildHandler(["income", "salary", "type"])}></input>
             </label>
           </div>
@@ -209,63 +208,64 @@ class App extends Component{
             <label className="rent">Rent:
               <input type="number" placeholder="Example: 420000" onChange={buildHandler(["expenses", "rent", "value"])}></input>
             </label>
-            <label className="rent">Units: 
+            <label className="rent">Units:
               <input type="text" placeholder="Example: Yearly, Semester, Monthly" onChange={buildHandler(["expenses", "rent", "type"])}></input>
             </label>
             <label className="food">Food (average):
               <input type="number" placeholder="Example: 420000" onChange={buildHandler(["expenses", "food", "value"])}></input>
             </label>
-            <label className="food">Units: 
+            <label className="food">Units:
               <input type="text" placeholder="Example: Yearly, Semester, Monthly" onChange={buildHandler(["expenses", "food", "type"])}></input>
             </label>
             <label className="tuition">Tutition:
               <input type="number" placeholder="Example: 420000" onChange={buildHandler(["expenses", "tuition", "value"])}></input>
             </label>
-            <label className="tuition">Units: 
+            <label className="tuition">Units:
               <input type="text" placeholder="Example: Yearly, Semester, Monthly" onChange={buildHandler(["expenses", "tuition", "type"])}></input>
             </label>
             <label className="savings">Savings:
               <input type="number" placeholder="Example: 420000" onChange={buildHandler(["expenses", "rent", "value"])}></input>
             </label>
-            <label className="savings">Units: 
+            <label className="savings">Units:
               <input type="text" placeholder="Example: Yearly, Semester, Monthly" onChange={buildHandler(["expenses", "rent", "type"])}></input>
             </label>
             <label className="car">Car Payments:
               <input type="number" placeholder="Example: 420000" onChange={buildHandler(["expenses", "carPayments", "value"])}></input>
             </label>
-            <label className="car">Units: 
+            <label className="car">Units:
               <input type="text" placeholder="Example: Yearly, Semester, Monthly" onChange={buildHandler(["expenses", "carPayments", "type"])}></input>
             </label>
             <label className="insurance-car">Car Insurance:
               <input type="number" placeholder="Example: 420000" onChange={buildHandler(["expenses", "carInsurance", "value"])}></input>
             </label>
-            <label className="insurance-car">Units: 
+            <label className="insurance-car">Units:
               <input type="text" placeholder="Example: Yearly, Semester, Monthly" onChange={buildHandler(["expenses", "carInsurance", "type"])}></input>
             </label>
             <label className="utilities">Utilities (average):
               <input type="number" placeholder="Example: 420000" onChange={buildHandler(["expenses", "utilities", "value"])}></input>
             </label>
-            <label className="utilities">Units: 
+            <label className="utilities">Units:
               <input type="text" placeholder="Example: Yearly, Semester, Monthly" onChange={buildHandler(["expenses", "utilities", "type"])}></input>
             </label>
             <label className="internet">Internet:
               <input type="number" placeholder="Example: 420000" onChange={buildHandler(["expenses", "internet", "value"])}></input>
             </label>
-            <label className="internet">Units: 
+            <label className="internet">Units:
               <input type="text" placeholder="Example: Yearly, Semester, Monthly" onChange={buildHandler(["expenses", "internet", "type"])}></input>
             </label>
             <label className="rent">Entertainment:
               <input type="entertainment" placeholder="Example: 420000" onChange={buildHandler(["expenses", "entertainment", "value"])}></input>
             </label>
-            <label className="entertainment">Units: 
+            <label className="entertainment">Units:
               <input type="text" placeholder="Example: Yearly, Semester, Monthly" onChange={buildHandler(["expenses", "entertainment", "type"])}></input>
             </label>
           </fieldset>
           <input type="submit" value="Submit"/>
         </form>
+        <About/>
       </div>
     </div>
-   
+
 );
   }
 }
