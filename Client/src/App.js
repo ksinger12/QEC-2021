@@ -1,25 +1,7 @@
 import './App.css';
 import React, {Component} from "react";
 import About from "./Components/About";
-
-class Unit extends Component {
-  constructor(props) {
-    super(props);
-    this.props = props;
-  }
-
-  render() {
-    return (
-      <select onChange={this.props.handler}>
-        <option value="--">--</option>
-        <option value="Monthly">Monthly</option>
-        <option value="Semester">Semester</option>
-        <option value="Yearly">Yearly</option>
-      </select>
-    );
-  }
-}
-
+import Unit from "./Components/Unit"
 
 class App extends Component{
   constructor(props) {
@@ -94,15 +76,20 @@ class App extends Component{
   render() {
     console.log(this.state)
 
-    const sendData = event => {
+    const sendData = (event, isDemo) => {
       event.preventDefault();
+
+      const reqBody = {
+        ...this.state,
+        isDemo,
+      }
 
       fetch('http://kingston.andrewfryer.ca:3000/data', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(this.state)
+        body: JSON.stringify(reqBody)
       })
       .then(res => res.json())
       .then(resBody => {
@@ -166,13 +153,15 @@ class App extends Component{
       });
     }
 
-    const dispatch = (props, value) => {
+    const doDemo = event => sendData(event, true);
+
+    const dispatch = (props, value, isNum) => {
       this.setState(prevState => {
         let obj = prevState;
         while(props.length > 1) {
           obj = obj[props.shift()];
         }
-        if(props[0] === "value") {
+        if(props[0] === "value" || isNum === true) {
           value = parseFloat(value)
         }
         obj[props.pop()] = value;
@@ -180,7 +169,7 @@ class App extends Component{
       });
     }
 
-    const buildHandler = props => (e => dispatch(props, e.target.value));
+    const buildHandler = (props, isNum=false) => (e => dispatch(props, e.target.value, isNum));
 
     return (
       <div className="App">
@@ -294,7 +283,7 @@ class App extends Component{
             </div>
             <div className="input_section">
             <label className="rent">Entertainment:
-              <input type="entertainment" placeholder="" onChange={buildHandler(["expenses", "entertainment", "value"])}></input>
+              <input type="number" placeholder="" onChange={buildHandler(["expenses", "entertainment", "value"])}></input>
             </label>
             <label className="entertainment">Units:
               <Unit handler={buildHandler(["expenses", "entertainment", "type"])} />
@@ -304,14 +293,17 @@ class App extends Component{
           <fieldset>
             <div className="input_section">
             <label className="chequingPrincipal">Current Chequing Account Value:
-              <input type="chequingPrincipal" placeholder="" onChange={buildHandler(["chequing_principal"])}></input>
+              <input type="number" placeholder="" onChange={buildHandler(["chequing_principal"], true)}></input>
             </label>
             <label className="savingsPrincipal">Current Savings Account Value:
-              <input type="savingsPrincipal" placeholder="" onChange={buildHandler(["savings_principal"])}></input>
+              <input type="number" placeholder="" onChange={buildHandler(["savings_principal"], true)}></input>
             </label>
             </div>
           </fieldset>
           <input type="submit" value="Submit"/>
+        </form>
+        <form onSubmit={doDemo}>
+          <input type="submit" value="Run Demo"/>
         </form>
       </div>
     </div>
