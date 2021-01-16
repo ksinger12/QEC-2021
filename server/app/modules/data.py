@@ -20,7 +20,7 @@ def data():
     expenses = post_data.get("expenses")
     principleCheq = post_data.get("chequing_principal")
     principleSav = post_data.get("savings_principal")
-    monthCount = 24 # this will do predictions for the next 2 years
+    monthCount = 12 # this will do predictions for the next year
 
     # if this is a demo, then override with test data
     if(post_data.get("isDemo") is not None):
