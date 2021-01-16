@@ -6,6 +6,7 @@ from app.modules.database import Data
 from algorithm import simulation
 
 def data():
+    # pull data out of request object
     post_data = request.form
     if not post_data:
         post_data = request.get_json()
@@ -14,13 +15,14 @@ def data():
     db_entry = post_data
     Data.insert_one(db_entry)
 
-    # Do calcuations
+    # Do calcuations:
     income = post_data.get("income")
     expenses = post_data.get("expenses")
     principleCheq = post_data.get("chequing_principal")
     principleSav = post_data.get("savings_principal")
-    monthCount = 24 # this will do predictions for the next 2 years
+    monthCount = 12 # this will do predictions for the next year
 
+    # if this is a demo, then override with test data
     if(post_data.get("isDemo") is not None):
         income = {
             'Money From Home': {'type': 'monthly', 'value': 100},
@@ -42,8 +44,10 @@ def data():
         principleSav = 5000
         principleCheq = 75
 
+    # call algorithm on the user's (or demo) data
     checking_balance, savings_balance, gic, gicMature, incomeMonthly, expensesMonthly = simulation(income, expenses, principleCheq, principleSav, monthCount)
 
+    # prepare response object
     data = {
         "checking_balance": checking_balance,
         "savings_balance": savings_balance,
@@ -55,4 +59,5 @@ def data():
         'status' : 'Success',
         'data' : data,
     }
+    # send response
     return make_response(jsonify(responseObject)), 200
