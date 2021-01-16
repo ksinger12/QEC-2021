@@ -188,6 +188,7 @@ class App extends Component{
           <h1>Welcome to QBudge</h1>
           <p>Helping students make the most of their budget</p>
         </header>
+        <About/>
         </div>
         <form onSubmit={sendData}>
           <fieldset className="income">
@@ -300,7 +301,6 @@ class App extends Component{
           </fieldset>
           <input type="submit" value="Submit"/>
         </form>
-        <About/>
       </div>
     </div>
 );
