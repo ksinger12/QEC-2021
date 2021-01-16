@@ -149,7 +149,7 @@ def simulate_next_month(prevChequing, prevSavings, prevGic, gicMature, income, e
         newGicMature = monthN % 12
     else:
         if (monthN % 12 == gicMature):
-            newSavings += prevGic*GIC_INTEREST
+            newSavings += prevGic*(1+GIC_INTEREST)
             newGicMature = -1
             newGic = 0
         else:
@@ -185,7 +185,7 @@ def simulation(income, expenses, principleCheq, principleSav, monthCount):
     print(gic)
     return chequing, savings, gic, gicMature
 
-c, s, g, m = simulation(income, expenses, 10000, 10000, 24)
+c, s, g, m = simulation(income, expenses, 1000, 1000, 24)
 
 plt.plot(c, label='Chequing', color='black')
 plt.plot(s, label='Savings', color='green')
