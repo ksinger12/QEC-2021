@@ -12,18 +12,9 @@ def server_test():
     return make_response(jsonify({'result':'success'})), 200
 
 # routes for managing data
-@app.route('/data', methods=["POST", "GET", "PUT", "DELETE"])
+@app.route('/data', methods=["POST"])
 def data_endpoint():
-    if request.method == "POST":
-        return create_data()
-    elif request.method == "GET":
-        return read_data()
-    elif request.method == "PUT":
-        return update_data()
-    elif request.method == "DELETE":
-        return delete_data()
-    else:
-        raise Exception("All methods must be handled")
+    return create_data()
 
 if __name__ == "__main__":
     app.run(debug=True, port=3000)
