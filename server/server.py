@@ -24,3 +24,6 @@ def data_endpoint():
         return delete_data()
     else:
         raise Exception("All methods must be handled")
+
+if __name__ == "__main__":
+    app.run(debug=True, port=3000)
