@@ -195,6 +195,9 @@ class App extends Component{
         while(props.length > 1) {
           obj = obj[props.shift()];
         }
+        if(props[0] === "value") {
+          value = parseFloat(value)
+        }
         obj[props.pop()] = value;
         return prevState;
       });

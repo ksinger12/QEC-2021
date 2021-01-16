@@ -1,6 +1,6 @@
 from flask import Flask, request, make_response, jsonify, render_template
 from flask_cors import CORS
-from app.modules.data import create_data, read_data, update_data, delete_data
+from app.modules.data import create_data
 
 # create and configure the app
 app = Flask(__name__)
