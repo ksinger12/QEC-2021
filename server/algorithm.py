@@ -1,21 +1,21 @@
 #Data input
 income = {
-    'Money From Home': {'type': 'month', 'value': 100},
-    'Loans': {'type': 'year', 'value': 10000},
+    'Money From Home': {'type': 'monthly', 'value': 100},
+    'Loans': {'type': 'yearly', 'value': 10000},
     'Scholarships': {'type': 'semester', 'value': 4500},
-    'Job': {'type': 'month', 'value': 0}
+    'Job': {'type': 'monthly', 'value': 0}
 }
 
 expenses = {
-    'Rent': {'type': 'month', 'value': 650},
-    'Food': {'type': 'month', 'value': 250},
+    'Rent': {'type': 'monthly', 'value': 650},
+    'Food': {'type': 'monthly', 'value': 250},
     'Tuition': {'type': 'semester', 'value': 4000},
-    'Savings': {'type': 'month', 'value': 0},
-    'Car Payments': {'type': 'month', 'value': 0},
-    'Car Insurance': {'type': 'year', 'value': 2000},
-    'Utilities': {'type': 'month', 'value': 80},
-    'Internet': {'type': 'month', 'value': 10},
-    'Entertainment': {'type': 'month', 'value': 20}
+    'Savings': {'type': 'monthly', 'value': 0},
+    'Car Payments': {'type': 'monthly', 'value': 0},
+    'Car Insurance': {'type': 'yearly', 'value': 2000},
+    'Utilities': {'type': 'monthly', 'value': 80},
+    'Internet': {'type': 'monthly', 'value': 10},
+    'Entertainment': {'type': 'monthly', 'value': 20}
 }
 
 #----------------------------------------------- Constants -----------------------------------------------
@@ -47,17 +47,17 @@ def is_sem(monthN):
 def get_net_bal(income, expenses, monthN):
     net_bal = 0
     for i in income:
-        if (income[i]['type'].lower() == 'month'):
+        if (income[i]['type'].lower() == 'monthly'):
             net_bal += income[i]['value']
-        if (is_year(monthN) and income[i]['type'].lower() == 'year'):
+        if (is_year(monthN) and income[i]['type'].lower() == 'yearly'):
             net_bal += income[i]['value']
         if (is_sem(monthN) and income[i]['type'].lower() == 'semester'):
             net_bal += income[i]['value']
     
     for i in expenses:
-        if (expenses[i]['type'].lower() == 'month'):
+        if (expenses[i]['type'].lower() == 'monthly'):
             net_bal -= expenses[i]['value']
-        if (is_year(monthN) and expenses[i]['type'].lower() == 'year'):
+        if (is_year(monthN) and expenses[i]['type'].lower() == 'yearly'):
             net_bal -= expenses[i]['value']
         if (is_sem(monthN) and expenses[i]['type'].lower() == 'semester'):
             net_bal -= expenses[i]['value']
