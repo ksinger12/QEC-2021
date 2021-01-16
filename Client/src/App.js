@@ -29,27 +29,31 @@ class App extends Component{
     }
   }
 
-  sendData(event) {
-    fetch('http://kingston.andrewfryer.ca:3000/data', {
-      method: 'POST',
-      headers: {},
-      body: JSON.stringify(this.state)
-    })
-    .then(res => res.json())
-    .then(data => {
-      this.data = data;
-    })
-    .then(() => window.plot)
-    event.preventDefault();
-  } 
-
   render() {
+    const sendData = event => {
+      event.preventDefault();
+      fetch('http://kingston.andrewfryer.ca:3000/data', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(this.state)
+      })
+      .then(res => res.json())
+      .then(data => {
+        this.data = data;
+      })
+      .then(() => {
+        console.log("calling plot");
+        window.plot();
+      });
+    }
 
     return (    
     <div className="App">
       <div className="form">
         <header></header>
-        <form onSubmit={this.sendData}>
+        <form onSubmit={sendData}>
           <fieldset className="today-info">
             <label>Date:
               <input type="text" placeholder="Example: 11/01/21" onChange={(e)=>{this.setState({date: e.target.value})}}></input>
