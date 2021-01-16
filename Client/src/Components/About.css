@@ -1,11 +1,10 @@
 .About {
   background: #2b2b2b;
   padding-top: 10px;
-  padding-bottom: 10px;
+  padding-bottom: 1000px;
   overflow: hidden;
 
-  position: absolute;
-  bottom: 0px;
+  margin-top: 200px;
 }
 
 .About h1 {

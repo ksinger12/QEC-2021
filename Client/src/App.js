@@ -1,7 +1,6 @@
 import './App.css';
 import React, {Component} from "react";
 import About from "./Components/About";
-import {Container, Row, Col} from "react-bootstrap";
 
 class Unit extends Component {
   constructor(props) {
