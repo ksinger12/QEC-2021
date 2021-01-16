@@ -4,6 +4,11 @@ import About from "./Components/About";
 import Unit from "./Components/Unit"
 
 class App extends Component{
+  /**
+   * 
+   * @param {*} props 
+   * this.state -> stores the user's data to be sent to the api
+   */
   constructor(props) {
     super(props);
 
@@ -74,8 +79,12 @@ class App extends Component{
   }
 
   render() {
-    console.log(this.state)
-
+    /**
+     * 
+     * @param {*} event 
+     * @param {*} isDemo 
+     * Prepares the data to be sent to the api
+     */
     const sendData = (event, isDemo) => {
       event.preventDefault();
 
@@ -93,6 +102,7 @@ class App extends Component{
       })
       .then(res => res.json())
       .then(resBody => {
+        //Graph the data received from the api
         const data = resBody.data;
         console.log(data);
         const graph = document.getElementById('tester');
@@ -146,10 +156,8 @@ class App extends Component{
               roworder: 'bottom to top'}
           };
 
-
         window.Plotly.newPlot(graph, incomeData, layout);
         window.Plotly.newPlot(graph_lines, lines, line_layout);
-
       });
     }
 
@@ -171,6 +179,7 @@ class App extends Component{
 
     const buildHandler = (props, isNum=false) => (e => dispatch(props, e.target.value, isNum));
 
+    //Setting up the format of the page and the form
     return (
       <div className="App">
       <div className="form">
