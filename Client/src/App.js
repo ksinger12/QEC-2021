@@ -11,6 +11,7 @@ class Unit extends Component {
   render() {
     return (
       <select onChange={this.props.handler}>
+        <option value="--">--</option>
         <option value="Monthly">Monthly</option>
         <option value="Semester">Semester</option>
         <option value="Yearly">Yearly</option>
