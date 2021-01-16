@@ -10,25 +10,28 @@ class App extends Component{
     this.data = {};
 
     this.state = {
-      date: "",
-      homeMoney: {
-        value: "",
-        type: ""
-      },
-      loans: {
-        value: "",
-        type: ""
-      },
-      scholarships: {
-        value: "",
-        type: ""
-      },
-      salary: {
-        value: "",
-        type: ""
+      income: {
+        date: "",
+        homeMoney: {
+          value: "",
+          type: ""
+        },
+        loans: {
+          value: "",
+          type: ""
+        },
+        scholarships: {
+          value: "",
+          type: ""
+        },
+        salary: {
+          value: "",
+          type: ""
+        }
       },
     }
   }
+
 
   render() {
     const sendData = event => {
