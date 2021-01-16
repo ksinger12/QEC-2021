@@ -10,8 +10,11 @@ class App extends Component{
     this.data = {};
 
     this.state = {
+      chequingAndSavings: {
+        chequing: "",
+        savings: ""
+      },
       income: {
-        date: "",
         homeMoney: {
           value: "",
           type: ""
@@ -165,8 +168,11 @@ class App extends Component{
         <About/>
         <form onSubmit={sendData}>
           <fieldset className="today-info">
-            <label>Date:
-              <input type="text" placeholder="Example: 11/01/21" onChange={buildHandler(["income", "date"])}></input>
+            <label className="chequing">Chequing Account Balance:
+              <input type="text" placeholder="Example: 40000" onChange={buildHandler(["chequingAndSavings", "chequing"])}></input>
+            </label>
+            <label className="chequing">Savings Account Balance:
+              <input type="text" placeholder="Example: 40000" onChange={buildHandler(["chequingAndSavings", "savings"])}></input>
             </label>
           </fieldset>
           <fieldset className="income">
