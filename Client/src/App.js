@@ -2,6 +2,7 @@ import './App.css';
 import React, {Component} from "react";
 import About from "./Components/About";
 import Unit from "./Components/Unit"
+import logo from './logo.png';
 
 class App extends Component{
   constructor(props) {
@@ -176,6 +177,7 @@ class App extends Component{
       <div className="form">
         <div className="topping">
         <header>
+          <img src={logo} style={{'radius': '10px', 'height': '80px'}} alt="logo" />
           <h1>Welcome to QBudge</h1>
           <p>Helping students make the most of their budget</p>
         </header>
