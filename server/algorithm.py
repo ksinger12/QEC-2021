@@ -67,47 +67,9 @@ def get_net_bal(income, expenses, monthN):
     
     return net_bal
 
-def get_net_year(income, expenses):
-    out = 0
-    for i in range(12):
-        out += get_net_bal(income, expenses, i)
-    return out
-
-def get_expenses_year(expenses):
-    out = 0
-    for monthN in range(12):
-        for i in expenses:
-            if (expenses[i]['type'].lower() == 'monthly'):
-                out += expenses[i]['value']
-            if (is_year(monthN) and expenses[i]['type'].lower() == 'yearly'):
-                out += expenses[i]['value']
-            if (is_sem(monthN) and expenses[i]['type'].lower() == 'semester'):
-                out += expenses[i]['value']
-    return out
-
-def get_max_expenses(income, expenses):
-    out = 0
-    for monthN in range(12):
-        net_bal = 0
-        for i in income:
-            if (income[i]['type'].lower() == 'monthly'):
-                net_bal -= income[i]['value']
-            # if (is_year(monthN) and income[i]['type'].lower() == 'yearly'):
-            #     net_bal += income[i]['value']
-            # if (is_sem(monthN) and income[i]['type'].lower() == 'semester'):
-            #     net_bal += income[i]['value']
-        
-        for i in expenses:
-            if (expenses[i]['type'].lower() == 'monthly'):
-                net_bal += expenses[i]['value']
-            if (is_year(monthN) and expenses[i]['type'].lower() == 'yearly'):
-                net_bal += expenses[i]['value']
-            if (is_sem(monthN) and expenses[i]['type'].lower() == 'semester'):
-                net_bal += expenses[i]['value']
-        out += net_bal
-    
-    return out
-
+#get_neg_net_bal: Gets the sum of all net balances that are negative
+#income - the income data gathered from client
+#expenses - the expenses data gathered from client
 def get_neg_net_bal(income, expenses):
     out = 0
     for monthN in range(12):
