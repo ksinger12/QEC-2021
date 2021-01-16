@@ -30,7 +30,7 @@ class App extends Component{
   }
 
   sendData(event) {
-    fetch('/', {
+    fetch('http://kingston.andrewfryer.ca:3000/data', {
       method: 'POST',
       headers: {},
       body: JSON.stringify(this.state)
