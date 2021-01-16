@@ -137,11 +137,13 @@ class App extends Component{
 
         var line2 = {
           y: data.savings_balance,
+          name: "Savings Account Balance",
           type: 'scatter'
         };
 
         var line3 = {
           y: data.gic,
+          name: "GICs Balance",
           type: 'scatter'
         };
 
