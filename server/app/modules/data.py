@@ -20,6 +20,26 @@ def create_data():
     principleCheq = 0
     principleSav = 0
     monthCount = 24 # this will do predictions for the next 2 years
+
+    #Test data input
+    # income = {
+    #     'Money From Home': {'type': 'monthly', 'value': 100},
+    #     'Loans': {'type': 'yearly', 'value': 10000},
+    #     'Scholarships': {'type': 'semester', 'value': 4500},
+    #     'Job': {'type': 'monthly', 'value': 0}
+    # }
+    # expenses = {
+    #     'Rent': {'type': 'monthly', 'value': 650},
+    #     'Food': {'type': 'monthly', 'value': 250},
+    #     'Tuition': {'type': 'semester', 'value': 4000},
+    #     'Savings': {'type': 'monthly', 'value': 0},
+    #     'Car Payments': {'type': 'monthly', 'value': 0},
+    #     'Car Insurance': {'type': 'yearly', 'value': 2000},
+    #     'Utilities': {'type': 'monthly', 'value': 80},
+    #     'Internet': {'type': 'monthly', 'value': 10},
+    #     'Entertainment': {'type': 'monthly', 'value': 20}
+    # }
+
     checking_balance, savings_balance, gic, gicMature, incomeMonthly, expensesMonthly = simulation(income, expenses, principleCheq, principleSav, monthCount)
 
     data = {
