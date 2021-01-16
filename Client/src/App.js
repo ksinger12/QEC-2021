@@ -44,8 +44,11 @@ class App extends Component{
         this.data = data;
       })
       .then(() => {
-        console.log("calling plot");
-        window.plot();
+        const graph = document.getElementById('tester');
+        window.Plotly.newPlot( graph, [{
+        x: [1, 2, 3, 4, 5],
+        y: [1, 2, 4, 8, 16] }], {
+        margin: { t: 0 } } );
       });
     }
 
