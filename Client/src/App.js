@@ -32,7 +32,8 @@ class App extends Component{
   sendData(event) {
     fetch('/', {
       method: 'POST',
-      headers: {}
+      headers: {},
+      body: JSON.stringify(this.state)
     })
     .then(res => res.json)
     .then(data => {
