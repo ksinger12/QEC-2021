@@ -12,20 +12,20 @@ url = base_url + "/data"
 testData = {
     "date": "",
     "homeMoney": {
-    "value": "",
-    "type": "" #M, S, Y
+        "value": "",
+        "type": "" #M, S, Y
     },
     "loans": {
-    "value": "",
-    "type": "" #M, S, Y
+        "value": "",
+        "type": "" #M, S, Y
     },
     "scholarships": {
-    "value": "",
-    "type": "" #M, S, Y
+        "value": "",
+        "type": "" #M, S, Y
     },
     "salary": {
-    "value": "",
-    "type": "" #M, S, Y
+        "value": "",
+        "type": "" #M, S, Y
     },
 }
 res = s.post(url = url, data=testData)
