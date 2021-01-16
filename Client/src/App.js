@@ -2,6 +2,23 @@ import './App.css';
 import React, {Component} from "react";
 import About from "./Components/About";
 
+class Unit extends Component {
+  constructor(props) {
+    super(props);
+    this.props = props;
+  }
+
+  render() {
+    return (
+      <select onChange={this.props.handler}>
+        <option value="Monthly">Monthly</option>
+        <option value="Semester">Semester</option>
+        <option value="Yearly">Yearly</option>
+      </select>
+    );
+  }
+}
+
 
 class App extends Component{
   constructor(props) {
@@ -160,18 +177,13 @@ class App extends Component{
         </div>
         <About/>
         <form onSubmit={sendData}>
-          <fieldset className="today-info">
-            <label>Date:
-              <input type="text" placeholder="Example: 11/01/21" onChange={buildHandler(["income", "date"])}></input>
-            </label>
-          </fieldset>
           <fieldset className="income">
           <div>
             <label className="money">Money (from home):
               <input type="number" placeholder="Example: 420000" onChange={buildHandler(["income", "homeMoney", "value"])}></input>
             </label>
             <label className="money">Units: 
-              <input type="text" placeholder="Example: Yearly, Semester, Monthly" onChange={buildHandler(["income", "homeMoney", "type"])}></input>
+              <Unit handler={buildHandler(["income", "homeMoney", "type"])} />
             </label>
           </div>
           <div>
@@ -179,7 +191,7 @@ class App extends Component{
               <input type="number" placeholder="Example: 420000" onChange={buildHandler(["income", "loans", "value"])}></input>
             </label>
             <label className="loan">Units: 
-              <input type="text" placeholder="Example: Yearly, Semester, Monthly" onChange={buildHandler(["income", "loans", "type"])}></input>
+              <Unit handler={buildHandler(["income", "loans", "type"])} />
             </label>
           </div>
           <div>
@@ -187,7 +199,7 @@ class App extends Component{
               <input type="number" placeholder="Example: 420000" onChange={buildHandler(["income", "scholarships", "value"])}></input>
             </label>
             <label className="scholarship">Units: 
-              <input type="text" placeholder="Example: Yearly, Semester, Monthly" onChange={buildHandler(["income", "scholarships", "type"])}></input>
+              <Unit handler={buildHandler(["income", "scholarships", "type"])} />
             </label>
           </div>
           <div>
@@ -195,7 +207,7 @@ class App extends Component{
               <input type="number" placeholder="Example: 420000" onChange={buildHandler(["income", "salary", "value"])}></input>
             </label>
             <label className="salary">Units: 
-              <input type="text" placeholder="Example: Yearly, Semester, Monthly" onChange={buildHandler(["income", "salary", "type"])}></input>
+              <Unit handler={buildHandler(["income", "salary", "type"])} />
             </label>
           </div>
           </fieldset>
@@ -204,55 +216,55 @@ class App extends Component{
               <input type="number" placeholder="Example: 420000" onChange={buildHandler(["expenses", "rent", "value"])}></input>
             </label>
             <label className="rent">Units: 
-              <input type="text" placeholder="Example: Yearly, Semester, Monthly" onChange={buildHandler(["expenses", "rent", "type"])}></input>
+              <Unit handler={buildHandler(["expenses", "rent", "type"])} />
             </label>
             <label className="food">Food (average):
               <input type="number" placeholder="Example: 420000" onChange={buildHandler(["expenses", "food", "value"])}></input>
             </label>
             <label className="food">Units: 
-              <input type="text" placeholder="Example: Yearly, Semester, Monthly" onChange={buildHandler(["expenses", "food", "type"])}></input>
+              <Unit handler={buildHandler(["expenses", "food", "type"])} />
             </label>
             <label className="tuition">Tutition:
               <input type="number" placeholder="Example: 420000" onChange={buildHandler(["expenses", "tuition", "value"])}></input>
             </label>
             <label className="tuition">Units: 
-              <input type="text" placeholder="Example: Yearly, Semester, Monthly" onChange={buildHandler(["expenses", "tuition", "type"])}></input>
+              <Unit handler={buildHandler(["expenses", "tuition", "type"])} />
             </label>
             <label className="savings">Savings:
               <input type="number" placeholder="Example: 420000" onChange={buildHandler(["expenses", "rent", "value"])}></input>
             </label>
             <label className="savings">Units: 
-              <input type="text" placeholder="Example: Yearly, Semester, Monthly" onChange={buildHandler(["expenses", "rent", "type"])}></input>
+              <Unit handler={buildHandler(["expenses", "rent", "type"])} />
             </label>
             <label className="car">Car Payments:
               <input type="number" placeholder="Example: 420000" onChange={buildHandler(["expenses", "carPayments", "value"])}></input>
             </label>
             <label className="car">Units: 
-              <input type="text" placeholder="Example: Yearly, Semester, Monthly" onChange={buildHandler(["expenses", "carPayments", "type"])}></input>
+              <Unit handler={buildHandler(["expenses", "carPayments", "type"])} />
             </label>
             <label className="insurance-car">Car Insurance:
               <input type="number" placeholder="Example: 420000" onChange={buildHandler(["expenses", "carInsurance", "value"])}></input>
             </label>
             <label className="insurance-car">Units: 
-              <input type="text" placeholder="Example: Yearly, Semester, Monthly" onChange={buildHandler(["expenses", "carInsurance", "type"])}></input>
+              <Unit handler={buildHandler(["expenses", "carInsurance", "type"])} />
             </label>
             <label className="utilities">Utilities (average):
               <input type="number" placeholder="Example: 420000" onChange={buildHandler(["expenses", "utilities", "value"])}></input>
             </label>
             <label className="utilities">Units: 
-              <input type="text" placeholder="Example: Yearly, Semester, Monthly" onChange={buildHandler(["expenses", "utilities", "type"])}></input>
+              <Unit handler={buildHandler(["expenses", "utilities", "type"])} />
             </label>
             <label className="internet">Internet:
               <input type="number" placeholder="Example: 420000" onChange={buildHandler(["expenses", "internet", "value"])}></input>
             </label>
             <label className="internet">Units: 
-              <input type="text" placeholder="Example: Yearly, Semester, Monthly" onChange={buildHandler(["expenses", "internet", "type"])}></input>
+              <Unit handler={buildHandler(["expenses", "internet", "type"])} />
             </label>
             <label className="rent">Entertainment:
               <input type="entertainment" placeholder="Example: 420000" onChange={buildHandler(["expenses", "entertainment", "value"])}></input>
             </label>
             <label className="entertainment">Units: 
-              <input type="text" placeholder="Example: Yearly, Semester, Monthly" onChange={buildHandler(["expenses", "entertainment", "type"])}></input>
+              <Unit handler={buildHandler(["expenses", "entertainment", "type"])} />
             </label>
           </fieldset>
           <input type="submit" value="Submit"/>

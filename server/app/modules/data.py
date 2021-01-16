@@ -20,12 +20,14 @@ def create_data():
     principleCheq = 0
     principleSav = 0
     monthCount = 24 # this will do predictions for the next 2 years
-    checking_balance, savings_balance, gic, gicMature = simulation(income, expenses, principleCheq, principleSav, monthCount)
+    checking_balance, savings_balance, gic, gicMature, incomeMonthly, expensesMonthly = simulation(income, expenses, principleCheq, principleSav, monthCount)
 
     data = {
         checking_balance,
         savings_balance,
         gic,
+        incomeMonthly,
+        expensesMonthly,
     }
     responseObject = {
         'status' : 'Success',
