@@ -1,25 +1,7 @@
 import './App.css';
 import React, {Component} from "react";
 import About from "./Components/About";
-
-class Unit extends Component {
-  constructor(props) {
-    super(props);
-    this.props = props;
-  }
-
-  render() {
-    return (
-      <select onChange={this.props.handler}>
-        <option value="--">--</option>
-        <option value="Monthly">Monthly</option>
-        <option value="Semester">Semester</option>
-        <option value="Yearly">Yearly</option>
-      </select>
-    );
-  }
-}
-
+import Unit from "./Components/Unit"
 
 class App extends Component{
   constructor(props) {
