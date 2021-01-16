@@ -1,21 +1,21 @@
 #Data input
 income = {
-    'Money From Home': {'type': 'm', 'value': 100},
-    'Loans': {'type': 'y', 'value': 10000},
-    'Scholarships': {'type': 's', 'value': 4500},
-    'Job': {'type': 'm', 'value': 0}
+    'Money From Home': {'type': 'month', 'value': 100},
+    'Loans': {'type': 'year', 'value': 10000},
+    'Scholarships': {'type': 'semester', 'value': 4500},
+    'Job': {'type': 'month', 'value': 0}
 }
 
 expenses = {
-    'Rent': {'type': 'm', 'value': 650},
-    'Food': {'type': 'm', 'value': 250},
-    'Tuition': {'type': 's', 'value': 4000},
-    'Savings': {'type': 'm', 'value': 0},
-    'Car Payments': {'type': 'm', 'value': 0},
-    'Car Insurance': {'type': 'y', 'value': 2000},
-    'Utilities': {'type': 'm', 'value': 80},
-    'Internet': {'type': 'm', 'value': 10},
-    'Entertainment': {'type': 'm', 'value': 20}
+    'Rent': {'type': 'month', 'value': 650},
+    'Food': {'type': 'month', 'value': 250},
+    'Tuition': {'type': 'semester', 'value': 4000},
+    'Savings': {'type': 'month', 'value': 0},
+    'Car Payments': {'type': 'month', 'value': 0},
+    'Car Insurance': {'type': 'year', 'value': 2000},
+    'Utilities': {'type': 'month', 'value': 80},
+    'Internet': {'type': 'month', 'value': 10},
+    'Entertainment': {'type': 'month', 'value': 20}
 }
 
 #----------------------------------------------- Constants -----------------------------------------------
