@@ -1,6 +1,7 @@
 import './App.css';
 import React, {Component} from "react";
 
+
 class App extends Component{
   constructor(props) {
     super(props);
@@ -38,10 +39,12 @@ class App extends Component{
     .then(data => {
       this.data = data;
     })
+    .then(() => window.plot)
     event.preventDefault();
   } 
 
   render() {
+
     return (    
     <div className="App">
       <div className="form">
@@ -82,6 +85,7 @@ class App extends Component{
         </form>
       </div>
     </div>
+   
 );
   }
 }
