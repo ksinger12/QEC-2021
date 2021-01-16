@@ -10,10 +10,22 @@ class App extends Component{
 
     this.state = {
       date: "",
-      homeMoney: "",
-      loans: "",
-      scholarships: "",
-      salary: ""
+      homeMoney: {
+        value: "",
+        type: "" //M, S, Y
+      },
+      loans: {
+        value: "",
+        type: "" //M, S, Y
+      },
+      scholarships: {
+        value: "",
+        type: "" //M, S, Y
+      },
+      salary: {
+        value: "",
+        type: "" //M, S, Y
+      },
     }
   }
 
@@ -41,16 +53,17 @@ class App extends Component{
           </fieldset>
           <fieldset className="income">
             <label>Money (from home):
-              <input type="number" placeholder="Example: 420000" onChange={(e)=>{this.setState({homeMoney: e.target.value})}}></input>
+              <input type="number" placeholder="Example: 420000" onChange={(e)=>{this.state.homeMoney.value = e.target.value}}></input>
             </label>
+            <label>Units: </label>
             <label>Loans:
-              <input type="number" placeholder="Example: 420000" onChange={(e)=>{this.setState({loans: e.target.value})}}></input>
+              <input type="number" placeholder="Example: 420000" onChange={(e)=>{this.state.loans.value = e.target.value}}></input>
             </label>
             <label>Scholarship Amounts (total):
-              <input type="number" placeholder="Example: 420000" onChange={(e)=>{this.setState({scholarships: e.target.value})}}></input>
+              <input type="number" placeholder="Example: 420000" onChange={(e)=>{this.state.scholarships.value = e.target.value}}></input>
             </label>
             <label>Job Salary:
-              <input type="number" placeholder="Example: 420000" onChange={(e)=>{this.setState({salary: e.target.value})}}></input>
+              <input type="number" placeholder="Example: 420000" onChange={(e)=>{this.state.salary.value = e.target.value}}></input>
             </label>
           </fieldset>
         </form>
