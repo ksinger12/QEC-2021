@@ -10,29 +10,35 @@ class App extends Component{
     this.data = {};
 
     this.state = {
-      date: "",
-      homeMoney: {
-        value: "",
-        type: ""
+      income: {
+        date: "",
+        homeMoney: {
+          value: "",
+          type: ""
+        },
+        loans: {
+          value: "",
+          type: ""
+        },
+        scholarships: {
+          value: "",
+          type: ""
+        },
+        salary: {
+          value: "",
+          type: ""
+        },
       },
-      loans: {
-        value: "",
-        type: ""
-      },
-      scholarships: {
-        value: "",
-        type: ""
-      },
-      salary: {
-        value: "",
-        type: ""
-      },
+      expenses: {},
     }
   }
 
   render() {
+    console.log(this.state)
+
     const sendData = event => {
       event.preventDefault();
+
       fetch('http://kingston.andrewfryer.ca:3000/data', {
         method: 'POST',
         headers: {
@@ -53,6 +59,19 @@ class App extends Component{
       });
     }
 
+    const dispatch = (props, value) => {
+      this.setState(prevState => {
+        let obj = prevState;
+        while(props.length > 1) {
+          obj = obj[props.shift()];
+        }
+        obj[props.pop()] = value;
+        return prevState;
+      });
+    }
+
+    const buildHandler = props => (e => dispatch(props, e.target.value));
+
     return (    
     <div className="App">
       <div className="form">
@@ -66,33 +85,33 @@ class App extends Component{
         <form onSubmit={sendData}>
           <fieldset className="today-info">
             <label>Date:
-              <input type="text" placeholder="Example: 11/01/21" onChange={(e)=>{this.setState({date: e.target.value})}}></input>
+              <input type="text" placeholder="Example: 11/01/21" onChange={buildHandler(["income", "date"])}></input>
             </label>
           </fieldset>
           <fieldset className="income">
             <label className="money">Money (from home):
-              <input type="number" placeholder="Example: 420000" onChange={(e)=>{this.state.homeMoney.value = e.target.value}}></input>
+              <input type="number" placeholder="Example: 420000" onChange={buildHandler(["income", "homeMoney", "value"])}></input>
             </label>
             <label className="money">Units: 
-              <input type="text" placeholder="Example: Yearly, Semester, Monthly" onChange={(e)=>{this.state.homeMoney.type = e.target.value}}></input>
+              <input type="text" placeholder="Example: Yearly, Semester, Monthly" onChange={buildHandler(["income", "homeMoney", "type"])}></input>
             </label>
             <label className="loan">Loans:
-              <input type="number" placeholder="Example: 420000" onChange={(e)=>{this.state.loans.value = e.target.value}}></input>
+              <input type="number" placeholder="Example: 420000" onChange={buildHandler(["income", "loans", "value"])}></input>
             </label>
             <label className="loan">Units: 
-              <input type="text" placeholder="Example: Yearly, Semester, Monthly" onChange={(e)=>{this.state.loans.type = e.target.value}}></input>
+              <input type="text" placeholder="Example: Yearly, Semester, Monthly" onChange={buildHandler(["income", "loans", "type"])}></input>
             </label>
             <label className="scholarship">Scholarship Amounts (total):
-              <input type="number" placeholder="Example: 420000" onChange={(e)=>{this.state.scholarships.value = e.target.value}}></input>
+              <input type="number" placeholder="Example: 420000" onChange={buildHandler(["income", "scholarships", "value"])}></input>
             </label>
             <label className="scholarship">Units: 
-              <input type="text" placeholder="Example: Yearly, Semester, Monthly" onChange={(e)=>{this.state.scholarships.type = e.target.value}}></input>
+              <input type="text" placeholder="Example: Yearly, Semester, Monthly" onChange={buildHandler(["income", "scholarships", "type"])}></input>
             </label>
             <label className="salary">Job Salary:
-              <input type="number" placeholder="Example: 420000" onChange={(e)=>{this.state.salary.value = e.target.value}}></input>
+              <input type="number" placeholder="Example: 420000" onChange={buildHandler(["income", "salary", "value"])}></input>
             </label>
             <label className="salary">Units: 
-              <input type="text" placeholder="Example: Yearly, Semester, Monthly" onChange={(e)=>{this.state.salary.type = e.target.value}}></input>
+              <input type="text" placeholder="Example: Yearly, Semester, Monthly" onChange={buildHandler(["income", "salary", "type"])}></input>
             </label>
           </fieldset>
           <input type="submit" value="Submit"/>
